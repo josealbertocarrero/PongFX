@@ -6,11 +6,11 @@
 package josealbertocarrero.pongfx;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 /**
@@ -21,31 +21,20 @@ public class PongFX extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
+        Pane root = new Pane();
+        Scene ventana = new Scene(root, 600, 400);
+        primaryStage.setTitle("PongFX");
+        primaryStage.setScene(ventana);
         primaryStage.show();
+        //Vamos a cambiar el color de la ventana (el fondo en negro)
+        ventana.setFill(Color.BLACK);
+        //Creación del circulo con la clase Circle
+        Circle bola = new Circle(10, 30, 7);
+        //Ahora vamos a cambiar el color de la bola llamando al método setFill que nos permiete cambiarlo
+        bola.setFill(Color.WHITE);
+        //El circulo no se muestra hasta que no hacemos un Layout con esta sentencia
+        //que vamos a crear a continuacion (hace referencia al root stackpanel que hemos creado en la linea 22)
+        root.getChildren().add(bola);
+        
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
 }
